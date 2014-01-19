@@ -79,8 +79,6 @@ public class StickyScrollView extends ScrollView {
 		super(context, attrs, defStyle);
 		setup();
 
-		
-
 		TypedArray a = context.obtainStyledAttributes(attrs,
 		        R.styleable.StickyScrollView, defStyle, 0);
 
@@ -307,7 +305,7 @@ public class StickyScrollView extends ScrollView {
 				if(currentlyStickingView!=null){
 					stopStickingCurrentlyStickingView();
 				}
-				// only compute the left offset when we start sticking.
+				// only compute left offset when we start sticking.
 				stickyViewLeftOffset = getLeftForViewRelativeOnlyChild(viewThatShouldStick);
 				startStickingView(viewThatShouldStick);
 			}
