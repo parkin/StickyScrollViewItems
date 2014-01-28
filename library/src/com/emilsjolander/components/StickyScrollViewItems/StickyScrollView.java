@@ -79,6 +79,7 @@ public class StickyScrollView extends ScrollView {
 		super(context, attrs, defStyle);
 		setup();
 
+		
 
 		TypedArray a = context.obtainStyledAttributes(attrs,
 		        R.styleable.StickyScrollView, defStyle, 0);
