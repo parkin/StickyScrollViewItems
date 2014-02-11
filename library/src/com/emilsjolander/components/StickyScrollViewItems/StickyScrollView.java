@@ -63,7 +63,6 @@ public class StickyScrollView extends ScrollView {
 				int b = (int) (getScrollY() + (currentlyStickingView.getHeight() + stickyViewTopOffset));
 				invalidate(l,t,r,b);
 			}
-			postDelayed(this, 16);
 		}
 	};
 
