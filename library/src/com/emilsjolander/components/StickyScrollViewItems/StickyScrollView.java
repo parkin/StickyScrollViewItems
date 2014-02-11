@@ -51,6 +51,8 @@ public class StickyScrollView extends ScrollView {
 
 	private int mShadowHeight;
 	private Drawable mShadowDrawable;
+	
+	private boolean mIsLayingOut;
 
 	private final Runnable invalidateRunnable = new Runnable() {
 
@@ -152,11 +154,14 @@ public class StickyScrollView extends ScrollView {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		mIsLayingOut = true;
 		super.onLayout(changed, l, t, r, b);
+		mIsLayingOut = false;
 		if(!clipToPaddingHasBeenSet){
 			clippingToPadding = true;
 		}
 		notifyHierarchyChanged();
+		mIsLayingOut = false;
 	}
 
 	@Override
@@ -280,7 +285,10 @@ public class StickyScrollView extends ScrollView {
 	@Override
 	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
 		super.onScrollChanged(l, t, oldl, oldt);
-		doTheStickyThing();
+		// only doTheStickyThing here if we are NOT currently in onLayout.
+		// Otherwise, onLayout will call doThiStickyThing when it is done.
+		if (!mIsLayingOut)
+			doTheStickyThing();
 	}
 
 	private void doTheStickyThing() {
